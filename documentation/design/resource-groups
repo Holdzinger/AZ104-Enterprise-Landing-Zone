@@ -1,1 +1,30 @@
-RG-Network
+## RG-Network
+
+Contains:
+- VNets
+- NSGs
+- Bastion
+
+## RG-Compute
+
+Contains:
+- Virtual Machines
+- NICs
+- Managed Identities
+
+## RG-Storage
+
+Contains:
+- Storage Accounts
+- File Shares
+
+## RG-Monitoring
+
+Contains:
+- Log Analytics Workspace
+- Azure Monitor Alerts
+
+## RG-Backup
+
+Contains:
+- Recovery Services Vault
