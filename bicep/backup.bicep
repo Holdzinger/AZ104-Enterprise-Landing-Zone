@@ -1,6 +1,8 @@
+targetScope = 'resourceGroup'
+
 param location string
 
-resource vault 'Microsoft.RecoveryServices/vaults@2023-02-01' = {
+resource recoveryVault 'Microsoft.RecoveryServices/vaults@2023-08-01' = {
   name: 'rsv-lexcorp-prod'
   location: location
 
@@ -8,8 +10,7 @@ resource vault 'Microsoft.RecoveryServices/vaults@2023-02-01' = {
     name: 'Standard'
   }
 
-  properties: {
-    publicNetworkAccess: 'Enabled'
-  }
+  properties: {}
 }
 
+output recoveryVaultId string = recoveryVault.id
