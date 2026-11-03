@@ -1,10 +1,13 @@
 targetScope = 'resourceGroup'
 
+param bastionName string
+param publicIpName string
 param location string
 param vnetName string
 
+
 resource publicIp 'Microsoft.Network/publicIPAddresses@2023-09-01' = {
-  name: 'pip-bastion-prod'
+  name: publicIpName
   location: location
 
   sku: {
@@ -21,7 +24,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' existing = {
 }
 
 resource bastionHost 'Microsoft.Network/bastionHosts@2023-09-01' = {
-  name: 'bas-lexcorp-prod'
+  name: bastionName
   location: location
 
   properties: {
