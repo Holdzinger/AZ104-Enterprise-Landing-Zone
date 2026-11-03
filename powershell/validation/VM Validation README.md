@@ -12,13 +12,16 @@ Get-AzVM `
 
 ## Result
 
-PowerState/running
-ProvisioningState/succeeded
+- PowerState/running
+- ProvisioningState/succeeded
 
 ## Portal Validation
+
 Navigate to Virtual Machines
-Select vm-lexcorp-app01
+- Select vm-lexcorp-app01
 Confirm:
-Status = Running
-VM Agent = Ready
-Monitoring = Enabled
+- Status = Running
+- VM Agent = Ready
+- Monitoring = Enabled
+
+## Validation Successful
