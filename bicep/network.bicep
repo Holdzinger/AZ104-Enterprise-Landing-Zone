@@ -1,9 +1,12 @@
 targetScope = 'resourceGroup'
 
+param vnetName string
+param subnetName string
+param nsgName string
 param location string = resourceGroup().location
 
 resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
-  name: 'vnet-lexcorp-prod'
+  name: vnetName
   location: location
   properties: {
     addressSpace: {
@@ -14,7 +17,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
 
     subnets: [
       {
-        name: 'app-subnet'
+        name: subnetName
         properties: {
           addressPrefix: '10.1.1.0/24'
         }
@@ -24,7 +27,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
 }
 
 resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
-  name: 'nsg-app-subnet'
+  name: nsgName
   location: location
 
   properties: {
