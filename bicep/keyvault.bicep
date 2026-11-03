@@ -1,9 +1,10 @@
 targetScope = 'resourceGroup'
 
 param location string
+param keyVaultName string
 
 resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
-  name: 'kv-lexcorp-prod'
+  name: keyVaultName
   location: location
 
   properties: {
