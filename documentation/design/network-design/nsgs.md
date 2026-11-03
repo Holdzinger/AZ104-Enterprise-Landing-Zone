@@ -11,10 +11,11 @@
   
 ## Key Rules
 
-- Priority	Direction	Action	Source	Destination	Purpose100	Inbound	Allow	Azure Bastion	Application Subnet	Secure RDP management
-- 200	Inbound	Deny	Internet	Application Subnet	Block direct public access
-- Default	Inbound	Deny	Any	Any	Block unauthorized traffic
-- Default	Outbound	Allow	Application Subnet	Internet/Azure Services	Enable required service communication
+### Priority |	Direction |	Action |	Source |	Destination |	Purpose
+- 100 |	Inbound |	Allow |	Azure Bastion |	Application Subnet |	Secure RDP management
+- 200	| Inbound |	Deny |	Internet |	Application Subnet |	Block direct public access
+- Default	| Inbound |	Deny |	Any	| Any |	Block unauthorized traffic
+- Default	| Outbound |	Allow |	Application Subnet |	Internet/Azure Services |	Enable required service communication
 
 ## Security Benefits
 
