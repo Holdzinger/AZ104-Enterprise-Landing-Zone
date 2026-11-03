@@ -1,40 +1,22 @@
+targetScope = 'resourceGroup'
+
 param location string
 param subnetId string
-param adminUsername string
-
-@secure()
-param adminPassword string
-
-resource publicIp 'Microsoft.Network/publicIPAddresses@2023-09-01' = {
-  name: 'vm-public-ip'
-  location: location
-
-  sku: {
-    name: 'Standard'
-  }
-
-  properties: {
-    publicIPAllocationMethod: 'Static'
-  }
-}
 
 resource nic 'Microsoft.Network/networkInterfaces@2023-09-01' = {
-  name: 'vm-nic'
+  name: 'nic-lexcorp-app01'
   location: location
 
   properties: {
     ipConfigurations: [
       {
-        name: 'internal'
-        properties: {
-          subnet: {
-            id: subnetId
-          }
+        name: 'ipconfig1'
 
+        properties: {
           privateIPAllocationMethod: 'Dynamic'
 
-          publicIPAddress: {
-            id: publicIp.id
+          subnet: {
+            id: subnetId
           }
         }
       }
@@ -42,32 +24,32 @@ resource nic 'Microsoft.Network/networkInterfaces@2023-09-01' = {
   }
 }
 
-resource vm 'Microsoft.Compute/virtualMachines@2024-03-01' = {
+resource vm 'Microsoft.Compute/virtualMachines@2023-09-01' = {
   name: 'vm-lexcorp-app01'
   location: location
 
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_D2s_v5'
+      vmSize: 'Standard_B2s'
+    }
+
+    osProfile: {
+      computerName: 'vm-lexcorp-app01'
+      adminUsername: 'azureadmin'
+      adminPassword: 'ChangeThisPassword123!'
     }
 
     storageProfile: {
       imageReference: {
-        publisher: 'Canonical'
-        offer: '0001-com-ubuntu-server-jammy'
-        sku: '22_04-lts-gen2'
+        publisher: 'MicrosoftWindowsServer'
+        offer: 'WindowsServer'
+        sku: '2022-datacenter-azure-edition'
         version: 'latest'
       }
 
       osDisk: {
         createOption: 'FromImage'
       }
-    }
-
-    osProfile: {
-      computerName: 'app01'
-      adminUsername: adminUsername
-      adminPassword: adminPassword
     }
 
     networkProfile: {
