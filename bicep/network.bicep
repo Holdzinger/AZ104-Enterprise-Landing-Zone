@@ -46,5 +46,11 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
   }
 }
 
+{
+  name: 'AzureBastionSubnet'
+  properties: {
+    addressPrefix: '10.1.2.0/26'
+  }
+}
 output subnetId string = resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, 'app-subnet')
 
