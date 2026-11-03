@@ -2,6 +2,8 @@ targetScope = 'resourceGroup'
 
 param location string
 param subnetId string
+param vmName string
+
 
 resource nic 'Microsoft.Network/networkInterfaces@2023-09-01' = {
   name: 'nic-lexcorp-app01'
@@ -25,7 +27,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2023-09-01' = {
 }
 
 resource vm 'Microsoft.Compute/virtualMachines@2023-09-01' = {
-  name: 'vm-lexcorp-app01'
+  name: vmName
   location: location
 
   properties: {
@@ -34,7 +36,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-09-01' = {
     }
 
     osProfile: {
-      computerName: 'vm-lexcorp-app01'
+      computerName: vmName
       adminUsername: 'azureadmin'
       adminPassword: 'ChangeThisPassword123!'
     }
